@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "LeetCode Complexity Analyzer",
     "version": "1.0",
-    "description": "Analyzes LeetCode solutions to determine the time complexity.",
+    "description": "Analyzes LeetCode solutions to determine the time and space complexity of your code.",
     "icons": {
         "16": "icons/icon16.png",
         "32": "icons/icon32.png",
@@ -28,7 +28,8 @@
         "https://neetcode.io/*"
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "web_accessible_resources": [{
         "resources": ["styles.css"],
@@ -49,5 +50,6 @@
             "run_at": "document_end"
         }
     ],
-    "options_page": "options.html"
+    "options_page": "options.html",
+    "minimum_chrome_version": "88"
 } 
