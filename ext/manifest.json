@@ -1,0 +1,53 @@
+{
+    "manifest_version": 3,
+    "name": "LeetCode Complexity Analyzer",
+    "version": "1.0",
+    "description": "Analyzes LeetCode solutions to determine the time complexity.",
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://leetcode.com/*",
+        "https://neetcode.io/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "web_accessible_resources": [{
+        "resources": ["styles.css"],
+        "matches": ["https://leetcode.com/*", "https://neetcode.io/*"]
+    }],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/problems/*",
+                "https://neetcode.io/problems/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "options_page": "options.html"
+} 

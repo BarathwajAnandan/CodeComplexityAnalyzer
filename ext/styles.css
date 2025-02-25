@@ -1,0 +1,110 @@
+.leetcode-analyzer-button 
+{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 10000;
+    transition: background-color 0.3s;
+}
+
+.leetcode-analyzer-button:hover 
+{
+    background-color: #2c2c2c;
+}
+
+.analysis-modal 
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 500px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 10002;
+    display: none;
+}
+
+.modal-header 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-title 
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.close-button 
+{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    color: #666;
+}
+
+.analysis-content 
+{
+    margin-bottom: 15px;
+}
+
+.complexity-section 
+{
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.complexity-title 
+{
+    font-weight: bold;
+    color: #2cbb5d;
+    margin-bottom: 10px;
+}
+
+.loading-spinner 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.loading-spinner::after 
+{
+    content: "";
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin 
+{
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} 

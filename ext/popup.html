@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body 
+        {
+            width: 300px;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .status 
+        {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .active 
+        {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .inactive 
+        {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        button 
+        {
+            width: 100%;
+            padding: 8px;
+            background-color: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover 
+        {
+            background-color: #2c2c2c;
+        }
+    </style>
+</head>
+<body>
+    <div id="status" class="status"></div>
+    <button id="openOptions">Open Settings</button>
+    <script src="popup.js"></script>
+</body>
+</html> 
