@@ -1,6 +1,7 @@
 # LeetCode Complexity Analyzer
 
 ## Overview
+Ever struggled to grasp the time and space complexity of your code? The LeetCode Complexity Analyzer is here to change that.
 
 The **LeetCode Complexity Analyzer** is a Chrome extension designed to help developers and programmers understand the time and space complexity of their code solutions on LeetCode and NeetCode. This extension automatically analyzes your code submissions, providing instant feedback to enhance your understanding of algorithm efficiency.
 
@@ -17,7 +18,7 @@ Check out the extension in action: [YouTube Demo](https://www.youtube.com/watch?
 *   **Powered by Sambanova Systems API (Free):** Leverages a powerful API for accurate and reliable complexity analysis.
 
 
-## LeetCode Complexity Analyzer - Chrome Extension (Coming Soon!)
+## LeetCode Complexity Analyzer - Chrome Extension (Coming Soon!) - If you don't want to wait, go ahead and install it using the instructions below!
 
 This extension will soon be published in the Google Chrome Web Store! Stay tuned for updates. It helps you analyze the time and space complexity of your LeetCode and NeetCode solutions directly within your browser.
 
