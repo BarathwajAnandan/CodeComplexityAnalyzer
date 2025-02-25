@@ -1,9 +1,9 @@
 (function ()
 {
-    // Function to find the Run button or sticky note SVG and position our buttons next to it
+    // Function to find the Run button or other UI elements and position our buttons next to it
     function positionButtons()
     {
-        // First try to find the Run button
+        // First try to find the Run button with id
         const runButton = document.querySelector('#run-button');
         
         // If Run button is found, position next to it
@@ -12,7 +12,47 @@
             return positionNextToElement(runButton, true); // true = insert before
         }
         
-        // If Run button not found, try to find the sticky note SVG
+        // Try to find the Submit button
+        const submitButton = document.querySelector('span.text-sm.font-medium');
+        
+        // If Submit button is found, position next to its parent button
+        if (submitButton && submitButton.textContent.trim() === 'Submit') 
+        {
+            // Find the parent button that contains the Submit text
+            let parentButton = submitButton;
+            // Go up the DOM tree to find the button element
+            while (parentButton && parentButton.tagName !== 'BUTTON' && parentButton.parentElement) 
+            {
+                parentButton = parentButton.parentElement;
+            }
+            
+            if (parentButton && parentButton.tagName === 'BUTTON') 
+            {
+                return positionNextToElement(parentButton, false); // false = insert after (to the right)
+            }
+        }
+        
+        // Try to find the play icon SVG
+        const playIcon = document.querySelector('svg.fa-play');
+        
+        // If play icon is found, position next to its parent button
+        if (playIcon) 
+        {
+            // Find the parent button that contains the play icon
+            let parentButton = playIcon;
+            // Go up the DOM tree to find the button element
+            while (parentButton && parentButton.tagName !== 'BUTTON' && parentButton.parentElement) 
+            {
+                parentButton = parentButton.parentElement;
+            }
+            
+            if (parentButton && parentButton.tagName === 'BUTTON') 
+            {
+                return positionNextToElement(parentButton, false); // false = insert after
+            }
+        }
+        
+        // If Run button not found, try to find the sticky note SVG as fallback
         const stickyNoteSvg = document.querySelector('svg.fa-note-sticky');
         
         // If sticky note SVG is found, position next to it
@@ -29,7 +69,7 @@
             return positionNextToElement(targetElement, false); // false = insert after
         }
         
-        return false; // Neither element found
+        return false; // No suitable elements found
     }
     
     // Function to position buttons next to a target element
@@ -43,6 +83,26 @@
         buttonContainer.style.marginLeft = "10px";
         buttonContainer.style.zIndex = "10000";
         buttonContainer.style.verticalAlign = "middle";
+        buttonContainer.style.alignItems = "center";  // Center items vertically
+        buttonContainer.style.height = "100%";        // Match height of parent
+        
+        // Check if this is a button with the Submit text
+        const isSubmitButton = targetElement.querySelector('span.text-sm.font-medium') !== null;
+        
+        // Check if this is a button with a play icon (uncomment and fix)
+        const hasPlayIcon = targetElement.querySelector('svg.fa-play') !== null;
+        
+        console.log("isSubmitButton", isSubmitButton, "hasPlayIcon", hasPlayIcon);
+        
+        // Apply styling for modern UI buttons (both Submit and Run)
+        if (isSubmitButton || hasPlayIcon) {
+            buttonContainer.style.display = "inline-flex";
+            buttonContainer.style.alignItems = "center";
+            buttonContainer.style.verticalAlign = "middle";
+            buttonContainer.style.margin = "5px 5px";
+            // Add some negative margin-top to move it up slightly
+            buttonContainer.style.marginTop = "-2px";
+        }
         
         // Create toggle button (moved from result div)
         const toggleButton = document.createElement("button");
@@ -62,13 +122,28 @@
         const analyzeButton = document.createElement("button");
         analyzeButton.textContent = "Analyze Code";
         analyzeButton.style.padding = "5px 10px";
-        analyzeButton.style.backgroundColor = "#2cbb5d";  // LeetCode green
-        analyzeButton.style.color = "white";
-        analyzeButton.style.border = "none";
+        // Make button yellow in all cases
+        analyzeButton.style.backgroundColor = "#f7df1e";  // Sticky note yellow
+        analyzeButton.style.color = "black";  // Better contrast with yellow
+        analyzeButton.style.border = "1px solid #e6d000";  // Slight border for definition
         analyzeButton.style.borderRadius = "4px";
         analyzeButton.style.cursor = "pointer";
-        analyzeButton.style.height = "2rem";  // Match Run button height
-        analyzeButton.style.fontSize = "15px";  // Match Run button font size
+        
+        // Adjust button styling based on which element we're next to
+        if (isSubmitButton || hasPlayIcon) {
+            // Match the modern button styling
+            analyzeButton.style.height = "32px";
+            analyzeButton.style.fontSize = "14px";
+            analyzeButton.style.fontWeight = "500";
+            analyzeButton.style.display = "inline-flex";
+            analyzeButton.style.alignItems = "center";
+            analyzeButton.style.justifyContent = "center";
+            analyzeButton.style.verticalAlign = "middle";
+        } else {
+            // Default styling for other placements
+            analyzeButton.style.height = "2rem";
+            analyzeButton.style.fontSize = "15px";
+        }
 
         // Add buttons to container
         buttonContainer.appendChild(toggleButton);
@@ -318,8 +393,8 @@
                 const analyzeButton = document.createElement("button");
                 analyzeButton.textContent = "Analyze Code";
                 analyzeButton.style.padding = "10px";
-                analyzeButton.style.backgroundColor = "#2cbb5d";  // LeetCode green
-                analyzeButton.style.color = "white";
+                analyzeButton.style.backgroundColor = "#f7df1e";  // Sticky note yellow
+                analyzeButton.style.color = "black";
                 analyzeButton.style.border = "none";
                 analyzeButton.style.borderRadius = "4px";
                 analyzeButton.style.cursor = "pointer";
